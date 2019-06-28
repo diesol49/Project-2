@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Education = sequelize.define("Educations", {
+  var Education = sequelize.define("Education", {
     schoolName: {
       type: DataTypes.STRING,
       defaultValue: !null
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     gradDate: {
-      tpye: DataTypes.STRING
+      type: DataTypes.STRING
     }
   });
   return Education;

@@ -1,19 +1,95 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-            <strong>ID</strong>: {{example.id}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{example.text}}</p>
-          <p>
-            <strong>Description:</strong> {{example.description}}</p>
-            <a href="/">← Back To Home</a>
-        </div>
-      </div>
-    </div>
+<body data-gr-c-s-loaded="true">
+
+  <div class="container">
+
+    <h2>UserInfo</h2>
+    <h4>First Name</h4>
+    <input type="text" id="firstName" class="form-control" required="">
+    <h4>Last name</h4>
+    <input type="text" id="lastName" class="form-control" required="">
+    <h4>About me</h4>
+    <input type="text" id="aboutMe" class="form-control" required="">
+    <h4>Location</h4>
+    <input type="text" id="location" class="form-control" required="">
+    <h4>constact info</h4>
+    <input type="text" id="contactInfo" class="form-control" required="">
+
+    <h2>Education</h2>
+    <h4>School Name</h4>
+    <input type="text" id="schoolName" class="form-control" required="">
+    <h4>School Location</h4>
+    <input type="text" id="schoolLocation" class="form-control" required="">
+    <h4>degree</h4>
+    <input type="text" id="degree" class="form-control" required="">
+    <h4>field of study</h4>
+    <input type="text" id="fieldOfStudy" class="form-control" required="">
+    <h4>graduation date</h4>
+    <input type="text" id="gradDate" class="form-control" required="">
+
+    <h2>Work Experience</h2>
+    <h4>Job Title</h4>
+    <input type="text" id="jobTitle" class="form-control" required="">
+    <h4>Company</h4>
+    <input type="text" id="company" class="form-control" required="">
+    <h4>Location</h4>
+    <input type="text" id="workLocation" class="form-control" required="">
+    <h4>Date of Employment</h4>
+    <input type="text" id="dateOfEmployment" class="form-control" required="">
+    <h4>Job Description</h4>
+    <input type="text" id="jobDescription" class="form-control" required="">
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle"
+        aria-hidden="true"></i>
+      Submit</button>
+
+    <hr>
+
   </div>
-</div>
+
+
+
+  <script type="text/javascript">
+
+    // Capture the form inputs
+    $("#submit").on("click", function (event) {
+      event.preventDefault();
+
+      // Form validation
+      function validateForm() {
+        let isValid = true;
+        $(".form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+        }
+        // If all required fields are filled
+        if (validateForm()) {
+          // Create an object for the user"s data
+          const userInfo = {
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            aboutMe: $("#aboutMe").val(),
+            location: $("#location").val(),
+            contactInfo: $("#contactInfo").val(),
+            scores: [
+              $("#q4").val(),
+              $("#q5").val(),
+              $("#q6").val(),
+              $("#q7").val(),
+              $("#q8").val(),
+              $("#q9").val(),
+              $("#q10").val()
+            ]
+          };
+
+          // AJAX post the data to the friends API.
+          $.post("/api/login/1", userInfo, function (data) {
+
+          });
+        } else {
+          alert("Please fill out all fields before submitting!");
+        }
+      });
+      </script>
