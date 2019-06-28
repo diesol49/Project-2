@@ -1,6 +1,6 @@
 {
   "name": "Project-2",
-    "version": "1.0.0",
+  "version": "1.0.0",
   "description": "Project 2 Starter",
   "main": "server.js",
   "scripts": {
@@ -28,5 +28,3 @@
     "prettier": "^1.17.1"
   }
 }
-
-

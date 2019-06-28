@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     gradDate: {
-      tpye: DataTypes.STRING
+      type: DataTypes.STRING
     }
   });
   return Education;
