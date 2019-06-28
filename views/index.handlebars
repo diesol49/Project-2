@@ -2,19 +2,26 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        {{!-- title --}}
+        <h1>{{msg}} Resume builders!</h1>
+        <h2>login</h2>
+        {{!-- login ID/password --}}
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="input-login">login ID</label>
+            <input type="text" class="form-control" id="input-login" placeholder="Enter your ID">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="input-password">login password</label>
+            <input type="password" class="form-control" id="input-password" placeholder="Enter your password">
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="submit" class="btn btn-primary float-right">Log in</button>
+          {{!--checkout 404 page --}}
+          <a href="/error">to 404 error page</a>
+          
+          <a href="/login/1">to example page</a>
         </form>
+        {{!-- Placeholder examples --}}
         <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
           {{#each examples}}
