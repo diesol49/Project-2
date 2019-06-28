@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "sH@R33F016",
     "database": "resume_db",
     "host": "localhost",
     "dialect": "mysql"
