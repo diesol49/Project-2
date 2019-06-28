@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var WorkExp = sequelize.define("WorkExps", {
+  var WorkExp = sequelize.define("WorkExp", {
     jobTitle: {
       type: DataTypes.STRING,
       defaultValue: !null
