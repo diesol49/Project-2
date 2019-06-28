@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Education = sequelize.define("Educations", {
+  var Education = sequelize.define("Education", {
     schoolName: {
       type: DataTypes.STRING,
       defaultValue: !null
