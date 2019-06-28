@@ -9,5 +9,13 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: !null
     }
   });
+
+  // Login.associate = function(models) {
+  //   Login.belongsTo(models.userInfos, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
   return Login;
 };
