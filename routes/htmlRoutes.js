@@ -1,20 +1,31 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Routes
   app.get("/", function(req, res) {
     db.User.findAll({}).then(function(result) {
-      res.render("index", {
+      res.render("welcome", {
         msg: "Welcome!",
         examples: result
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/user/:id", function(req, res) {
-    db.User.findOne({ where: { id: req.params.id } }).then(function(result) {
-      res.render("example", {
+  // login page
+  app.get("/login", function(req, res) {
+    db.User.findOne({ where: {} }).then(function(result) {
+      res.render("login", {
+        msg: "Welcome!",
+        example: result
+      });
+    });
+  });
+
+  // Register page
+  app.get("/register/", function(req, res) {
+    db.User.findOne({}).then(function(result) {
+      res.render("register", {
+        msg: "register your",
         example: result
       });
     });
@@ -25,3 +36,11 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+// app.get("/login/:id", function(req, res) {
+//   db.User.findOne({ where: { id: req.params.id } }).then(function(result) {
+//     res.render("user", {
+//       example: result
+//     });
+//   });
+// });

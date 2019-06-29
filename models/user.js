@@ -1,17 +1,29 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    loginName: {
+    userName: {
       type: DataTypes.STRING,
-      defaultValue: !null
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },userEmail: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
-    loginPassword: {
+    userPassword: {
       type: DataTypes.STRING,
-      defaultValue: !null
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     }
   });
 
-  // Login.associate = function(models) {
-  //   Login.belongsTo(models.userInfos, {
+  // User.associate = function(models) {
+  //   User.belongsTo(models.userInfos, {
   //     foreignKey: {
   //       allowNull: false
   //     }
