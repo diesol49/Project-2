@@ -24,7 +24,7 @@ module.exports = function(app) {
   });
 
   // Register page
-  app.get("/register/", function(req, res) {
+  app.get("/register", function(req, res) {
     db.User.findOne({}).then(function(result) {
       res.render("register", {
         msg: "good to see you",
@@ -78,8 +78,9 @@ module.exports = function(app) {
       });
     } else {
       // Validation passed
-      db.User.findOne({ userEmail: userEmail }).then(function(User) {
-        if (User) {
+      const User = db.User
+      User.findOne({ where: {userEmail: userEmail} }).then(function(user) {
+        if (user) {
           // User exists
           errors.push({ msg: "Email is already registered" });
           res.render("register", {
@@ -105,6 +106,10 @@ module.exports = function(app) {
               // Save user
               newUser.save()
               .then(user => {
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
                 res.redirect('/login');
               })
               .catch(err => console.log(err));
