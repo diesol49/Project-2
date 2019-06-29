@@ -2,11 +2,9 @@ module.exports = function(sequelize, DataTypes) {
   var Education = sequelize.define("Education", {
     schoolName: {
       type: DataTypes.STRING,
-      defaultValue: !null
     },
     schoolLocation: {
       type: DataTypes.STRING,
-      defaultValue: !null
     },
     degree: {
       type: DataTypes.STRING
