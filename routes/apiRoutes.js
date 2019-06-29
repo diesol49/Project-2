@@ -1,34 +1,50 @@
 var db = require("../models");
 
-module.exports = function(app) {
-  // Get all examples
+module.exports = function (app) {
+  //Get all examples
   // app.get("/api/resume", function(req, res) {
   //   db.resume_db.findAll({}).then(function(dbresume_db) {
   //     res.json(dbresume_db);
   //   });
   // });
 
-  // Create a new example
-  app.post("/api/education", function(req, res) {
-    db.Education.create(req.body).then(function(dbEducation) {
+  app.get("/api/education", function (req, res) {
+    res.json(education);
+  });
+
+  app.post("/api/education", function (req, res) {
+    db.Education.create(req.body).then(function (dbEducation) {
       res.json(dbEducation);
     });
   });
 
-  app.post("/api/login", function(req, res) {
-    db.Login.create(req.body).then(function(dbLogin) {
+  app.post("/api/education", function(req, res) {
+    var education = {
+      School: schoolName,
+      Location: schoolLocation,
+      Degree: degree,
+      Field: fieldOfStudy,
+      Graduation: gradDate
+    };
+    console.log(req.body);
+
+    res.json(education);
+  });
+
+  app.post("/api/login", function (req, res) {
+    db.Login.create(req.body).then(function (dbLogin) {
       res.json(dbLogin);
     });
   });
 
-  app.post("/api/userinfo", function(req, res) {
-    db.Userinfo.create(req.body).then(function(dbUserinfo) {
+  app.post("/api/userinfo", function (req, res) {
+    db.Userinfo.create(req.body).then(function (dbUserinfo) {
       res.json(dbUserinfo);
     });
   });
 
-  app.post("/api/workexp", function(req, res) {
-    db.WorkExp.create(req.body).then(function(dbWorkExp) {
+  app.post("/api/workexp", function (req, res) {
+    db.WorkExp.create(req.body).then(function (dbWorkExp) {
       res.json(dbWorkExp);
     });
   });
