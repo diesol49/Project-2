@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Login.findAll({}).then(function(result) {
+    db.User.findAll({}).then(function(result) {
       res.render("index", {
         msg: "Welcome!",
         examples: result
@@ -12,8 +12,8 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/login/:id", function(req, res) {
-    db.Login.findOne({ where: { id: req.params.id } }).then(function(result) {
+  app.get("/user/:id", function(req, res) {
+    db.User.findOne({ where: { id: req.params.id } }).then(function(result) {
       res.render("example", {
         example: result
       });
