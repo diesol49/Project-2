@@ -15,9 +15,9 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/login", function(req, res) {
-    db.Login.create(req.body).then(function(dbLogin) {
-      res.json(dbLogin);
+  app.post("/api/user", function(req, res) {
+    db.User.create(req.body).then(function(dbUser) {
+      res.json(dbUser);
     });
   });
 
@@ -30,6 +30,12 @@ module.exports = function(app) {
   app.post("/api/workexp", function(req, res) {
     db.WorkExp.create(req.body).then(function(dbWorkExp) {
       res.json(dbWorkExp);
+    });
+  });
+
+  app.get("/api/education", function(req, res) {
+    db.Education.create(req.body).then(function(dbEducation) {
+      res.json(dbEducation);
     });
   });
 

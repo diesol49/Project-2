@@ -1,6 +1,9 @@
 require("dotenv").config();
+
 var express = require("express");
 var exphbs = require("express-handlebars");
+var flash = require("connect-flash");
+var session = require("express-session");
 
 var db = require("./models");
 
@@ -11,6 +14,21 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(flash());
+
+//global vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.error_msg = req.flash('success_msg')
+  next();
+});
 
 // Handlebars
 app.engine(
