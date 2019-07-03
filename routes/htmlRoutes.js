@@ -137,13 +137,10 @@ module.exports = function(app) {
   });
 
   // Login
-  app.post("/login", function(req, res, next) {
-    console.log(req.body);
-    passport.authenticate("local", {
-      successRedirect: "/dashboard",
-      failureRedirect: "/",
-      failureFlash: true
-    })(req, res, next);
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect("/");
   });
 
   // Logout
