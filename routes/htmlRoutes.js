@@ -1,5 +1,8 @@
 var db = require("../models");
 var bcrypt = require("bcryptjs");
+var passport = require("passport");
+// var ensureAuthenticated = require("../config/auth");
+// var forwardAuthenticated = require("../config/auth");
 
 module.exports = function(app) {
   // Routes
@@ -35,7 +38,9 @@ module.exports = function(app) {
 
   // Dashboard page
   app.get("/dashboard/", function(req, res) {
-    res.render("dashboard");
+    res.render("dashboard", {
+      user: req.user
+    });
   });
 
   // Render 404 page for any unmatched routes
@@ -47,84 +52,104 @@ module.exports = function(app) {
   //'Post' routes
   // Register handle
   app.post("/register", function(req, res) {
-    var { userName, userEmail, userPassword, userPassword2 } = req.body;
     var errors = [];
 
     // Check required fields
-    if (!userName || !userEmail || !userPassword || !userPassword2) {
+    if (
+      !req.body.userName ||
+      !req.body.userEmail ||
+      !req.body.userPassword ||
+      !req.body.userPassword2
+    ) {
       errors.push({ msg: "Please fill in all fields" });
       console.log(errors[0]);
     }
 
     // Check passwords match
-    if (userPassword !== userPassword2) {
+    if (req.body.userPassword !== req.body.userPassword2) {
       errors.push({ msg: "Passwords do not match" });
       console.log(errors[0]);
     }
 
     // Check password length
-    if (userPassword.length < 6) {
+    if (req.body.userPassword.length < 6) {
       errors.push({ meg: "Password should be at least 6 charcters" });
       console.log(errors[0]);
     }
 
     if (errors.length > 0) {
       res.render("register", {
-        errors,
-        userName,
-        userEmail,
-        userPassword,
-        userPassword2
+        errors: errors,
+        userName: req.body.userName,
+        userEmail: req.body.userEmail,
+        userPassword: req.body.userPassword,
+        userPassword2: req.body.userPassword2
       });
     } else {
       // Validation passed
-      const User = db.User
-      User.findOne({ where: {userEmail: userEmail} }).then(function(user) {
+      var User = db.User;
+      User.findOne({ where: { userEmail: req.body.userEmail } }).then(function(
+        user
+      ) {
         if (user) {
           // User exists
           errors.push({ msg: "Email is already registered" });
           res.render("register", {
-            errors,
-            userName,
-            userEmail,
-            userPassword,
-            userPassword2
+            errors: errors,
+            userName: req.body.userName,
+            userEmail: req.body.userEmail,
+            userPassword: req.body.userPassword,
+            userPssword2: req.body.userPassword2
           });
         } else {
-          const newUser = new User({
-            userName,
-            userEmail,
-            userPassword
+          var newUser = new User({
+            userName: req.body.userName,
+            userEmail: req.body.userEmail,
+            userPassword: req.body.userPassword
           });
 
           // Hash Password
           bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(newUser.userPassword, salt, function(err, hash) {
-              if(err) throw err;
+              if (err) {
+                console.log(err);
+              }
               // Set password to hashed
               newUser.userPassword = hash;
               // Save user
-              newUser.save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
-                res.redirect('/login');
-              })
-              .catch(err => console.log(err));
+              newUser
+                .save()
+                .then(function() {
+                  req.flash(
+                    "success_msg",
+                    "You are now registered and can log in"
+                  );
+                  res.redirect("/login");
+                })
+                .catch(function(err) {
+                  console.log(err);
+                });
             });
           });
         }
       });
     }
   });
-};
 
-// app.get("/login/:id", function(req, res) {
-//   db.User.findOne({ where: { id: req.params.id } }).then(function(result) {
-//     res.render("user", {
-//       example: result
-//     });
-//   });
-// });
+  // Login
+  app.post("/login", function(req, res, next) {
+    console.log(req.body);
+    passport.authenticate("local", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/",
+      failureFlash: true
+    })(req, res, next);
+  });
+
+  // Logout
+  app.get("/logout", function(req, res) {
+    req.logout();
+    req.flash("success_msg", "You are logged out");
+    res.redirect("/login");
+  });
+};

@@ -4,14 +4,18 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var flash = require("connect-flash");
 var session = require("express-session");
+var passport = require("passport");
 
 var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// Passport Config
+require("./config/passport")(passport);
+
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
@@ -24,9 +28,10 @@ app.use(
 app.use(flash());
 
 //global vars
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg')
-  res.locals.error_msg = req.flash('success_msg')
+app.use(function(req, res, next) {
+  res.locals.successMsg = req.flash("successMsg");
+  res.locals.errorMsg = req.flash("successMsg");
+  res.locals.error = req.flash("error");
   next();
 });
 
