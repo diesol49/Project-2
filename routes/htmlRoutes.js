@@ -94,6 +94,7 @@ module.exports = function(app) {
         if (user) {
           // User exists
           errors.push({ msg: "Email is already registered" });
+          console.log(errors[0]);
           res.render("register", {
             errors: errors,
             userName: req.body.userName,
@@ -137,10 +138,12 @@ module.exports = function(app) {
   });
 
   // Login
-  app.post("/login", passport.authenticate("local"), function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect("/");
+  app.post("/login", function(req, res, next) {
+    passport.authenticate("local", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/login",
+      failureFlash: true
+    })(req, res, next);
   });
 
   // Logout

@@ -25,6 +25,10 @@ app.use(
     saveUninitialized: true
   })
 );
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+//connect flash
 app.use(flash());
 
 //global vars
