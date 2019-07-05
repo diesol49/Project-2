@@ -1,21 +1,21 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
   var WorkExp = sequelize.define("WorkExp", {
     jobTitle: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     company: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     location: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     dateOfEmployment: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     jobDescription: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   });
   return WorkExp;
