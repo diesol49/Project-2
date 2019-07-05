@@ -1,21 +1,21 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
   var Userinfo = sequelize.define("Userinfo", {
     firstName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     lastName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     aboutMe: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     location: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     contactInfo: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   });
   // // We're associating "Userinfos" with "Logins", so whenever

@@ -44,9 +44,11 @@ module.exports = function(passport, user) {
             var data = {
               email: email,
               password: userPassword,
-              firstname: req.body.firstname,
-              lastname: req.body.lastname
+              firstName: req.body.firstName,
+              lastName: req.body.lastName
             };
+            console.log(req.body.lastName)
+            console.log(req.body.firstName)
 
             User.create(data).then(function(newUser, created) {
               if (!newUser) {
