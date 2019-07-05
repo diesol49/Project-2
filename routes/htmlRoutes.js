@@ -7,7 +7,7 @@ module.exports = function(app) {
     db.User.findAll({}).then(function(result) {
       res.render("welcome", {
         msg: "Welcome!",
-        examples: result
+        example: result
       });
     });
   });
