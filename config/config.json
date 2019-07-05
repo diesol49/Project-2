@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+<<<<<<< HEAD
+    "password": "Diesol",
+=======
+    "password": "password",
+>>>>>>> master
     "database": "resume_db",
     "host": "localhost",
     "dialect": "mysql"

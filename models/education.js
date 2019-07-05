@@ -1,19 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
   var Education = sequelize.define("Education", {
     schoolName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
     },
     schoolLocation: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
     },
     degree: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     fieldOfStudy: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     gradDate: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   });
   return Education;

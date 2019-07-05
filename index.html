@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="generator" content="Mobirise v4.9.7, mobirise.com">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <link rel="shortcut icon" href="assets/images/logo4.png" type="image/x-icon">
     <meta name="description" content="">
@@ -48,8 +48,8 @@
 </head>
 
 <body>
+  
     <section class="header1 cid-rusLJfy9vI mbr-parallax-background" id="header1-0">
-
 
 
         <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(20, 157, 204);">
@@ -63,40 +63,15 @@
                     </h1>
                     <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">Design a
                         professional resume within minutes!</h3>
+                        <a href="#" onclick="HTMLtoPDF()">Download Link</a>
                     <p class="mbr-text align-center pb-3 mbr-fonts-style display-5"></p>
                     <div class="mbr-section-btn align-center"><a class="btn btn-md btn-danger display-4"
-                            href="">Start<br></a></div>
+                            href="form.html">Start<br></a></div>
                 </div>
             </div>
           </div>
-        </div>
-<<<<<<< HEAD
-      </div>
-    </section>
-
-    <section class="engine">
-      <a href="https://mobirise.info/t">amp templates</a>
-    </section>
-    <section class="cid-rusOiNfzPX" id="image3-3">
-      <figure class="mbr-figure container">
-        <div class="image-block" style="width: 41%;">
-          <img
-            src="assets/images/graphicresume-636x891.jpg"
-            width="1400"
-            alt="Mobirise"
-            title=""
-          />
-          <figcaption class="mbr-figure-caption mbr-figure-caption-over">
-            <div
-              class="container pb-5 mbr-white align-center mbr-fonts-style display-1"
-            ></div>
-          </figcaption>
-        </div>
-      </figure>
-    </section>
-
-=======
-
+        
+    </div>
     </section>
 
     <section class="engine"><a href="">amp templates</a></section>
@@ -111,22 +86,23 @@
 
         <!-- Page content -->
         <div class="main">
-            ...
+                <a href="http://html2pdfrocket.com/html/topdf?apikey=68852eca-19d1-43fb-9da1-fb422f26ad36">Download Current Page as PDF</a>
         </div>
 
 
+    <!---<section class="cid-rusOiNfzPX" id="image3-3">
         <figure class="mbr-figure container">
-            <div class="image-block" style="width: 41%;">
-                <img src="assets/images/graphicresume-636x891.jpg" width="1400" alt="Mobirise" title="">
+            <div class="image-block" style="width: 50%; box-align: center">
+                <img src="assets/images/graphicresume-636x891.jpg" width="1000" alt="Mobirise" title="" />
                 <figcaption class="mbr-figure-caption mbr-figure-caption-over">
                     <div class="container pb-5 mbr-white align-center mbr-fonts-style display-1"></div>
                 </figcaption>
             </div>
         </figure>
-    </section>
+    </section>->
 
 
->>>>>>> 76e9d0cbd35143088bfec294992d623fdcbb7512
+
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
     <script src="assets/popper/popper.min.js"></script>
     <script src="assets/tether/tether.min.js"></script>
@@ -134,13 +110,44 @@
     <script src="assets/smoothscroll/smooth-scroll.js"></script>
     <script src="assets/parallax/jarallax.min.js"></script>
     <script src="assets/theme/js/script.js"></script>
-<<<<<<< HEAD
+    <script>
+    
+    function pdfRocket(html, savePdf) {
+       var self = this;
+       
+       self.save = savePdf;
+       self.req = new XMLHttpRequest();
+  
+       var url = "http://api.html2pdfrocket.com/pdf";
+       var apiKey = "ABCD-1234";
+ 
+       // Additional parameters can be added here
+       var data = "apikey=" + apiKey + "&value=" + encodeURIComponent(html);
+  
+       self.req.onload = function(event) {
+              self.reader = new FileReader();
+              
+              self.reader.addEventListener("loadend", function() {
+ 
+                     // Open in new tab
+                     window.open(self.reader.result, "_blank");
+                     
+                     // return data URI
+                     return self.reader.result;
+              });
+              
+              self.reader.readAsDataURL(self.req.response);
+       };
+  
+       self.req.open("POST", url, true);
+       self.req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+       self.req.responseType = "blob";
+  
+       self.req.send(data);
+}
+
+    </script>
   </body>
 </html>
-=======
 
 
-</body>
-
-</html>
->>>>>>> 76e9d0cbd35143088bfec294992d623fdcbb7512
