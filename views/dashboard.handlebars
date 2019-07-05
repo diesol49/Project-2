@@ -1,96 +1,128 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome {{user.name}}</p>
 <div class="container">
-
-    <h2>UserInfo</h2>
-    <h4>First Name</h4>
-    <input type="text" id="firstName" class="form-control" required="">
-    <h4>Last name</h4>
-    <input type="text" id="lastName" class="form-control" required="">
-    <h4>About me</h4>
-    <input type="text" id="aboutMe" class="form-control" required="">
-    <h4>Location</h4>
-    <input type="text" id="location" class="form-control" required="">
-    <h4>constact info</h4>
-    <input type="text" id="contactInfo" class="form-control" required="">
-
-    <h2>Education</h2>
-    <h4>School Name</h4>
-    <input type="text" id="schoolName" class="form-control" required="">
-    <h4>School Location</h4>
-    <input type="text" id="schoolLocation" class="form-control" required="">
-    <h4>degree</h4>
-    <input type="text" id="degree" class="form-control" required="">
-    <h4>field of study</h4>
-    <input type="text" id="fieldOfStudy" class="form-control" required="">
-    <h4>graduation date</h4>
-    <input type="text" id="gradDate" class="form-control" required="">
-
-    <h2>Work Experience</h2>
-    <h4>Job Title</h4>
-    <input type="text" id="jobTitle" class="form-control" required="">
-    <h4>Company</h4>
-    <input type="text" id="company" class="form-control" required="">
-    <h4>Location</h4>
-    <input type="text" id="workLocation" class="form-control" required="">
-    <h4>Date of Employment</h4>
-    <input type="text" id="dateOfEmployment" class="form-control" required="">
-    <h4>Job Description</h4>
-    <input type="text" id="jobDescription" class="form-control" required="">
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle"
-            aria-hidden="true"></i>
-        Submit</button>
-
-    <hr>
-
-
-
-
+    <div class="row mt-4">
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-dark" href="/logout">Sign out</a>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-light" href="/form">Edit my info</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="resume-container">
+                <h1>My Resume</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Resume Name</th>
+                            <th>Format</th>
+                            <th>Download</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="form-row">
+                            <form id="resume-form">
+                                <td colspan="3">
+                                    <input value="My First Resume" id="resume-name" type="text" />
+                                </td>
+                                <td><button type="submit" class="btn btn-success">Create New</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </d>
+    <!-- Custom Script -->
     <script type="text/javascript">
+        $(document).ready(function () {
+            var nameInput = $("#resume-name");
+            var resumeList = $("tbody");
+            var container = $(".resume-container");
+            // Adding event listeners to the form to create a new object, and the button to delete
+            $(document).on("submit", "#resume-form", handleResumeFormSubmit);
+            $(document).on("click", ".delete-author", handleDeleteButtonPress);
 
-        // Capture the form inputs
-        $("#submit").on("click", function (event) {
-            event.preventDefault();
+            // Getting the initial list of Resume Names
+            getVersion();
 
-            // Form validation
-            function validateForm() {
-                let isValid = true;
-                $(".form-control").each(function () {
-                    if ($(this).val() === "") {
-                        isValid = false;
+            // A function to handle what happens when the form is submitted to create a new Author
+            function handleResumeFormSubmit(event) {
+                event.preventDefault();
+                // Don't do anything if the name fields hasn't been filled out
+                if (!nameInput.val().trim().trim()) {
+                    return;
+                }
+                // Calling the upsertAuthor function and passing in the value of the name input
+                upsertAuthor({
+                    resumeName: nameInput
+                        .val()
+                        .trim()
+                });
+                console.log(nameInput);
+            }
+
+            // A function for creating an author. Calls getVersion upon completion
+            function upsertAuthor(data) {
+                $.post("/api/version", data)
+                    .then(getVersion);
+            }
+
+            // Function for creating a new list row for authors
+            function createResumeRow(data) {
+                var newTr = $("<tr>");
+                newTr.data("version", data);
+                newTr.append("<td>" + data.resumeName + "</td>");
+                newTr.append("<td><a href='/form?version_id=" + data.id + "'>" + data.id + "</a></td>");
+                newTr.append("<td><a href=''>Download</a></td>");
+                newTr.append("<td><a style='cursor:pointer;color:red' class='delete-author'>Delete Resume</a></td>");
+                return newTr;
+            }
+
+            // Function for retrieving authors and getting them ready to be rendered to the page
+            function getVersion() {
+                $.get("/api/version", function (data) {
+                    var rowsToAdd = [];
+                    for (var i = 0; i < data.length; i++) {
+                        rowsToAdd.push(createResumeRow(data[i]));
                     }
+                    renderResumeList(rowsToAdd);
+                    nameInput.val("");
                 });
-                return isValid;
             }
-            // If all required fields are filled
-            if (validateForm()) {
-                // Create an object for the user"s data
-                const userInfo = {
-                    firstName: $("#firstName").val(),
-                    lastName: $("#lastName").val(),
-                    aboutMe: $("#aboutMe").val(),
-                    location: $("#location").val(),
-                    contactInfo: $("#contactInfo").val(),
-                    scores: [
-                        $("#q4").val(),
-                        $("#q5").val(),
-                        $("#q6").val(),
-                        $("#q7").val(),
-                        $("#q8").val(),
-                        $("#q9").val(),
-                        $("#q10").val()
-                    ]
-                };
 
-                // AJAX post the data to the friends API.
-                $.post("/api/login/1", userInfo, function (data) {
-
-                });
-            } else {
-                alert("Please fill out all fields before submitting!");
+            // A function for rendering the list of authors to the page
+            function renderResumeList(rows) {
+                resumeList.children().not(":last").remove();
+                container.children(".alert").remove();
+                if (rows.length) {
+                    console.log(rows);
+                    resumeList.prepend(rows);
+                }
+                else {
+                    renderEmpty();
+                }
             }
-        });
-    </script>
 
-    <a href="/logout" class="btn btn-secondary">logout</a>
+            // Function for handling what to render when there are no authors
+            function renderEmpty() {
+                var alertDiv = $("<div>");
+                alertDiv.addClass("alert alert-warning");
+                alertDiv.text("Start making your resume!");
+                container.append(alertDiv);
+            }
+
+            // Function for handling what happens when the delete button is pressed
+            function handleDeleteButtonPress() {
+                var listItemData = $(this).parent("td").parent("tr").data("version");
+                var id = listItemData.id;
+                $.ajax({
+                    method: "DELETE",
+                    url: "/api/version/" + id
+                })
+                    .then(getVersion);
+            }
+        });</script>

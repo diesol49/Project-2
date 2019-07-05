@@ -1,6 +1,6 @@
 var exports = (module.exports = {});
 var bcrypt = require("bcryptjs");
-var db = require("../models")
+var db = require("../models");
 
 exports.welcome = function(req, res) {
   res.render("welcome");
@@ -12,6 +12,10 @@ exports.signin = function(req, res) {
   res.render("signin");
 };
 
+exports.error = function(req, res) {
+  res.render("404");
+};
+
 exports.dashboard = function(req, res) {
   res.render("dashboard");
 };
@@ -21,6 +25,10 @@ exports.logout = function(req, res) {
     res.redirect("/");
   });
 };
+
+exports.form = function(req, res) {
+  res.render("form");
+}
 
 exports.validate = function(req, res) {
   var errors = [];
@@ -58,34 +66,32 @@ exports.validate = function(req, res) {
       password2: req.body.password2
     });
   } else {
-    
-      var User = db.user;
+    var User = db.user;
 
-      var isValidPassword = function(userpass, password) {
-        return bCrypt.compareSync(password, userpass);
-      };
+    var isValidPassword = function(userpass, password) {
+      return bCrypt.compareSync(password, userpass);
+    };
 
-      User.findOne({ where: { email: email } })
-        .then(function(user) {
-          if (!user) {
-            return done(null, false, { message: "Email does not exist" });
-          }
+    User.findOne({ where: { email: email } })
+      .then(function(user) {
+        if (!user) {
+          return done(null, false, { message: "Email does not exist" });
+        }
 
-          if (!isValidPassword(user.password, password)) {
-            return done(null, false, { message: "Incorrect password." });
-          }
+        if (!isValidPassword(user.password, password)) {
+          return done(null, false, { message: "Incorrect password." });
+        }
 
-          var userinfo = user.get();
+        var userinfo = user.get();
 
-          return done(null, userinfo);
-        })
-        .catch(function(err) {
-          console.log("Error:", err);
+        return done(null, userinfo);
+      })
+      .catch(function(err) {
+        console.log("Error:", err);
 
-          return done(null, false, {
-            message: "Something went wrong with your Signin"
-          });
+        return done(null, false, {
+          message: "Something went wrong with your Signin"
         });
-    
+      });
   }
 };

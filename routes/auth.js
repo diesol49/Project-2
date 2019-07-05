@@ -1,12 +1,21 @@
 var authController = require("../controllers/authcontroller");
 
 module.exports = function(app, passport) {
+  //get routes
   app.get("/", authController.welcome);
 
   app.get("/signup", authController.signup);
 
   app.get("/signin", authController.signin);
+  
+  app.get("/dashboard", isLoggedIn, authController.dashboard);
+  
+  app.get("/logout", authController.logout);
 
+  app.get("/form", authController.form);
+  
+  // app.get("*", authController.error);
+  //post routes
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
@@ -14,10 +23,6 @@ module.exports = function(app, passport) {
       failureRedirect: "/signup"
     })
   );
-
-  app.get("/dashboard", isLoggedIn, authController.dashboard);
-
-  app.get("/logout", authController.logout);
 
   app.post(
     "/signin",

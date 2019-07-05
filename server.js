@@ -37,6 +37,9 @@ const syncOptions = { foce: false };
 
 // Routes
 var authRoute = require("./routes/auth")(app, passport);
+var apiRoute = require("./routes/apiRoutes")(app);
+var varRoute = require("./routes/verRoutes")(app);
+
 //load passport strategies
 require('./config/passport')(passport, db.user);
 
