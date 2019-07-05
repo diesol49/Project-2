@@ -1,21 +1,21 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
   var Userinfo = sequelize.define("Userinfo", {
     firstName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     lastName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: !null
     },
     aboutMe: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     location: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     contactInfo: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   });
   // // We're associating "Userinfos" with "Logins", so whenever
@@ -26,5 +26,16 @@ module.exports = function(sequelize, DataTypes) {
   //     onDelete: "cascade"
   //   });
   // };
+
+  Userinfo.associate = function(models) {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+    Userinfo.belongsTo(models.Version, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Userinfo;
 };
