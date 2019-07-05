@@ -67,26 +67,36 @@
             // If all required fields are filled
             if (validateForm()) {
                 // Create an object for the user"s data
-                const userInfo = {
+                var userInfo = {
                     firstName: $("#firstName").val(),
                     lastName: $("#lastName").val(),
                     aboutMe: $("#aboutMe").val(),
                     location: $("#location").val(),
-                    contactInfo: $("#contactInfo").val(),
-                    scores: [
-                        $("#q4").val(),
-                        $("#q5").val(),
-                        $("#q6").val(),
-                        $("#q7").val(),
-                        $("#q8").val(),
-                        $("#q9").val(),
-                        $("#q10").val()
-                    ]
+                    contactInfo: $("#contactInfo").val()
                 };
 
-                // AJAX post the data to the friends API.
-                $.post("/api/login/1", userInfo, function (data) {
+                var Education = {
+                    schoolName: $("#schoolName").val(),
+                    schoolLocation: $("#schoolLocation").val(),
+                    degree: $("#degree").val(),
+                    fieldOfStudy: $("#fieldOfStudy").val(),
+                    gradDate: $("#gradDate").val()
+                };
 
+                var workExp = {
+                    jobTitle: $("#jobTitle").val(),
+                    company: $("#company").val(),
+                    location: $("#workLocation").val(),
+                    dateOfEmployment: $("#dateOfEmployment").val(),
+                    jobDescription: $("#jobDescription").val()
+                }
+
+                // AJAX post the data 
+                $.post("/api/userinfo", userInfo, function (data) {
+                });
+                $.post("/api/education", Education, function (data) {
+                });
+                $.post("/api/workexp", workExp, function (data) {
                 });
             } else {
                 alert("Please fill out all fields before submitting!");
