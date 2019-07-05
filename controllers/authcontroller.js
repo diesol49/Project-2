@@ -30,6 +30,10 @@ exports.form = function(req, res) {
   res.render("form");
 }
 
+exports.resume = function(req, res) {
+  res.render("resume");
+}
+
 exports.validate = function(req, res) {
   var errors = [];
 
