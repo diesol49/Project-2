@@ -12,6 +12,8 @@ module.exports = function(app, passport) {
   
   app.get("/logout", authController.logout);
 
+  app.get("/resume", authController.resume);
+
   app.get("/form", authController.form);
   //everything else beside the link will result in errror. disabled for a reason
   // app.get("*", authController.error);
