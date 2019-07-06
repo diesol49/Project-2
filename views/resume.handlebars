@@ -153,14 +153,9 @@
 
 
         <div class="panel-item p-3">
-            <div class="card-block">
-
-                <h1>Tarik Parkman</h1>
-                <h3>Junior Developer</h3>
-
+            <div class="card-block" id="mainTitle">
             </div>
-
-
+            <h3>Junior Developer</h3>
         </div>
 
 
@@ -178,7 +173,7 @@
 
         <div class="row pt-5 mt-5">
             <div class="col-md-6 text-elements">
-                <h2 class="align-left mbr-fonts-style display-2">Skills</h2>
+                <h2 class="align-left mbr-fonts-style display-2">About Me</h2>
                 <p class="section-content-text align-left mbr-fonts-style display-7">Lorem ipsum dolor sit amet,
                     consectetur adipiscing elit. Nam erat libero, bibendum in libero tempor, luctus volutpat ligula.
                     Integer fringilla porttitor pretium. Nam erat felis, iaculis id justo ut, ullamcorper feugiat
@@ -253,12 +248,14 @@
                         <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago
-                                        via
-                                        Twitter</small></p>
+                                <h4 class="timeline-title">Job title</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> company</small>
+                                </p>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> location</small>
+                                </p>
                             </div>
                             <div class="timeline-body">
+                                <p>Job Description</p>
                                 <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá ,
                                     depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz
                                     elementum
@@ -321,10 +318,16 @@
                     <div class="step-text-content">
                         <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Uc Davis</h4>
                         <p class="mbr-step-text mbr-fonts-style display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat libero, bibendum in
-                            libero tempor, luctus volutpat ligula. Integer fringilla porttitor pretium. Nam erat
-                            felis, iaculis id justo ut, ullamcorper feugiat elit. Proin vel lectus auctor, porttitor
-                            ligula vitae, convallis leo. In eget massa elit.
+                            school location
+                        </p>
+                        <p class="mbr-step-text mbr-fonts-style display-7">
+                            degree
+                        </p>
+                        <p class="mbr-step-text mbr-fonts-style display-7">
+                            field of study
+                        </p>
+                        <p class="mbr-step-text mbr-fonts-style display-7">
+                            graduation date
                         </p>
                     </div>
                 </div>
@@ -458,11 +461,29 @@
 </div>
 
 <script type="text/javascript">
-    $.urlParam = function (name) {
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        return results[1] || 0;
-    }
+    $(document).ready(function () {
+        $.urlParam = function (name) {
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results[1] || 0;
+        }
 
-    var id = $.urlParam('version_id');
+        var id = $.urlParam('version_id');
 
+
+        getVersion();
+
+        function inputInformation(data) {
+            var info = $("<h1>");
+            info.attr("id", "nameResume");
+            info.text(data.firstName + " " + data.lastName);
+            $("#mainTitle").append(info);
+        };
+
+        function getVersion() {
+            $.get("/api/userinfo", function (data) {
+                console.log("!!!!!" + JSON.stringify(data[id]));
+                inputInformation(data[id])
+            });
+        }
+    })
 </script>
