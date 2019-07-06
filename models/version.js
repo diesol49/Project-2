@@ -9,20 +9,20 @@ module.exports = function(sequelize, Sequelize) {
   Version.associate = function(models) {
     // Associating Version with Posts
     // When an Version is deleted, also delete any associated Posts
-    Version.belongsTo(models.user, {
-      foreignKey: {
-        allowNull: false
-      }
-    }),
+    // Version.belongsTo(models.user, {
+    //   foreignKey: {
+    //     allowNull: false
+    //   }
+    // }),
     Version.hasMany(models.Userinfo, {
       onDelete: "cascade"
-    }),
-      Version.hasMany(models.Education, {
-        onDelete: "cascade"
-      }),
-      Version.hasMany(models.WorkExp, {
-        onDelete: "cascade"
-      });
+    });
+    Version.hasMany(models.Education, {
+      onDelete: "cascade"
+    });
+    Version.hasMany(models.WorkExp, {
+      onDelete: "cascade"
+    });
   };
 
   return Version;
