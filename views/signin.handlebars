@@ -1,110 +1,46 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="">UCD RESUME BULDERS</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="">UCD RESUME BULDERS</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="/">Main page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
 
 <!-- Masthead -->
-<header class="masthead">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-white font-weight-bold">UC DAVUS CAREER RESUME BUILDER
-                </h1>
-                <hr class="divider my-4">
-            </div>
-            <div class="col-lg-8 align-self-baseline">
-                <p class="text-white-75 font-weight-light mb-5">Design a
-                    professional resume within minutes, no strings attached!
-                </p>
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Services Section -->
-<section class="page-section" id="about">
-    <div class="container">
-        <h2 class="text-center mt-0">At Your Service</h2>
-        <hr class="divider my-4">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="mt-5">
-                    <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                    <h3 class="h4 mb-2">ATS proof</h3>
-                    <p class="text-muted mb-0">Resume is following lastest ATS format</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="mt-5">
-                    <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-                    <h3 class="h4 mb-2">Up to Date</h3>
-                    <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="mt-5">
-                    <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-                    <h3 class="h4 mb-2">Ready to use</h3>
-                    <p class="text-muted mb-0">You can use resume as soon as you are ready!</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="mt-5">
-                    <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                    <h3 class="h4 mb-2">Made with Love</h3>
-                    <p class="text-muted mb-0">Is it really a group project, if it's not made with love?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <hr class="divider my-4">
-    <div class="col-lg-12 text-center">
-        <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">Get Started!</a>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="page-section bg-primary" id="services">
-    <div class="container">
-        <div id="home">
+<header class="masthead3">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        {{!-- title --}}
-        <div class="row mt-5">
-          <div class="col-md-6 m-auto">
+      <div class="col-12">
+        <div class="row mt-3">
+          <div class="col-md-12 m-auto">
+            <br><br><br><br><br><br>
             <div class="card card-body">
-              <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login</h1>
-              <h3>{{msg}}</h3>
+              <h1 class="text-center text-primary mb-3"><i class="fas fa-2x fa-check-square"></i></h1>
+              <h1 class="text-center text-primary">Login</h1>
               <form action="/signin" method="POST">
                 <div class="form-group">
-                  <label for="userEmail">Email</label>
+                  <label class="text-primary" for="userEmail">Email</label>
                   <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
+                  <label class="text-primary" for="password">Password</label>
                   <input type="password" id="password" name="password" class="form-control"
                     placeholder="Enter Password" />
                 </div>
@@ -119,39 +55,91 @@
       </div>
     </div>
   </div>
-</div>
+</header>
+
+<!-- Services Section -->
+<section class="page-section" id="about">
+  <div class="container">
+    <h2 class="text-center mt-0">At Your Service</h2>
+    <hr class="divider my-4">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="mt-5">
+          <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+          <h3 class="h4 mb-2">ATS proof</h3>
+          <p class="text-muted mb-0">Resume is following lastest ATS format</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="mt-5">
+          <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+          <h3 class="h4 mb-2">Up to Date</h3>
+          <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="mt-5">
+          <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+          <h3 class="h4 mb-2">Ready to use</h3>
+          <p class="text-muted mb-0">You can use resume as soon as you are ready!</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 text-center">
+        <div class="mt-5">
+          <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+          <h3 class="h4 mb-2">Made with Love</h3>
+          <p class="text-muted mb-0">Is it really a group project, if it's not made with love?</p>
+        </div>
+      </div>
     </div>
+  </div>
+  <br>
+  <hr class="divider my-4">
+  <div class="col-lg-12 text-center">
+    <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+  </div>
 </section>
 
-<!-- Call to Action Section -->
+<!-- About Section -->
+<section class="page-section bg-primary" id="services">
+  </div>
+  </div>
+</section>
+
+<!-- Contact: github -->
 <section class="page-section bg-dark text-white" id="contact">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h2 class="mt-0">Let's Get In Touch!</h2>
-                <hr class="divider my-4">
-                <p class="text-muted mb-5">Ready to check out more?</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                <div>+1 (202) 555-0149</div>
-            </div>
-            <div class="col-lg-4 mr-auto text-center">
-                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                <!-- Make sure to change the email address in anchor text AND the link below! -->
-                <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">Let's Get In Touch!</h2>
+        <hr class="divider my-4">
+        <p class="text-muted mb-5">Ready to check out more?</p>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+        <a class="d-block" href="https://github.com/cltn39"><i class="fab fa-github fa-3x mb-3 text-muted"></i></a>
+        <a class="d-block" href="https://github.com/cltn39">Chisoo Song</a>
+      </div>
+      <div class="col-lg-4 mr-auto text-center">
+        <a class="d-block" href="https://github.com/tarikdeshon"><i class="fab fa-github fa-3x mb-3 text-muted"></i></a>
+        <!-- Make sure to change the email address in anchor text AND the link below! -->
+        <a class="d-block" href="https://github.com/tarikdeshon">Tarik Parkman Jr</a>
+      </div>
+      <div class="col-lg-4 mr-auto text-center">
+        <a class="d-block" href="https://github.com/diesol49"><i class="fab fa-github fa-3x mb-3 text-muted"></i></a>
+        <!-- Make sure to change the email address in anchor text AND the link below! -->
+        <a class="d-block" href="https://github.com/diesol49">Diego Solorio</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
 <footer class="bg-light py-5">
-    <div class="container">
-        <div class="small text-center text-muted">Copyright &copy; 2019 - ChiTaricDiesol</div>
-    </div>
+  <div class="container">
+    <div class="small text-center text-muted">Copyright &copy; 2019 - ChiTarikDiesol</div>
+  </div>
 </footer>
 
 <!-- Bootstrap core JavaScript -->
