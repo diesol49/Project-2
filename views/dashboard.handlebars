@@ -42,6 +42,11 @@
             var nameInput = $("#resume-name");
             var resumeList = $("tbody");
             var container = $(".resume-container");
+
+            $.urlParam = function (name) {
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                return results[1] || 0;
+            }
             // Adding event listeners to the form to create a new object, and the button to delete
             $(document).on("submit", "#resume-form", handleResumeFormSubmit);
             $(document).on("click", ".delete-author", handleDeleteButtonPress);
@@ -85,6 +90,7 @@
             // Function for retrieving authors and getting them ready to be rendered to the page
             function getVersion() {
                 $.get("/api/version", function (data) {
+                    console.log("!!!!!" + JSON.stringify(data));
                     var rowsToAdd = [];
                     for (var i = 0; i < data.length; i++) {
                         rowsToAdd.push(createResumeRow(data[i]));
@@ -99,7 +105,6 @@
                 resumeList.children().not(":last").remove();
                 container.children(".alert").remove();
                 if (rows.length) {
-                    console.log(rows);
                     resumeList.prepend(rows);
                 }
                 else {
