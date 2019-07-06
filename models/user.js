@@ -37,11 +37,11 @@ module.exports = function(sequelize, Sequelize) {
     }
   });
 
-  User.associate = function(models) {
-    User.hasMany(models.Version, {
-      onDelete: "cascade"
-    });
-  };
+  // User.associate = function(models) {
+  //   User.hasMany(models.Version, {
+  //     onDelete: "cascade"
+  //   });
+  // };
 
   return User;
 };

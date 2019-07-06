@@ -1,115 +1,168 @@
-<div class="row mt-4">
-    <div class="col-md-2 col-sm-2">
-        <a class="btn btn-dark" href="/logout">Sign out</a>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/">UCD RESUME BUILDERS</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/logout">Sign Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="col-md-2 col-sm-2">
-        <a class="btn btn-light" href="/dashboard">Dashboard</a>
+</nav>
+
+<!-- My resume Section -->
+<header class="masthead3 bg-dark text-white">
+    <br><br><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <h2>UserInfo</h2>
+                        <h4>First Name</h4>
+                        <input type="text" id="firstName" class="form-control" required="">
+                        <h4>Last name</h4>
+                        <input type="text" id="lastName" class="form-control" required="">
+                        <h4>About me</h4>
+                        <textarea rows="6" cols="50" id="aboutMe" class="form-control"></textarea>
+                        <h4>Location</h4>
+                        <input type="text" id="location" class="form-control" required="">
+                        <h4>constact info</h4>
+                        <input type="text" id="contactInfo" class="form-control" required="">
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <h2>Education</h2>
+                        <h4>School Name</h4>
+                        <input type="text" id="schoolName" class="form-control" required="">
+                        <br>
+                        <h4>School Location</h4>
+                        <input type="text" id="schoolLocation" class="form-control" required="">
+                        <br>
+                        <h4>degree</h4>
+                        <input type="text" id="degree" class="form-control" required="">
+                        <br>
+                        <h4>field of study</h4>
+                        <input type="text" id="fieldOfStudy" class="form-control" required="">
+                        <br>
+                        <h4>graduation date</h4>
+                        <input type="date" id="gradDate" class="form-control" required="">
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <h2>Work Experience</h2>
+                        <h4>Job Title</h4>
+                        <input type="text" id="jobTitle" class="form-control" required="">
+                        <h4>Company</h4>
+                        <input type="text" id="company" class="form-control" required="">
+                        <h4>Location</h4>
+                        <input type="text" id="workLocation" class="form-control" required="">
+                        <h4>Date of Employment</h4>
+                        <input type="date" id="dateOfEmployment" class="form-control" required="">
+                        <h4>Job Description</h4>
+                        <textarea rows="6" cols="50" id="jobDescription" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+        </div><hr class="divider my-4">
+        <br>
+        <div class="row">
+                <!-- Submit Button -->
+                <div class="col-lg-6 text-center">
+                    <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger" id="submit"><i
+                            class="fa fa-check-circle" aria-hidden="true"></i>
+                        Submit</button>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <a class="btn btn-dark btn-xl js-scroll-trigger" href="/resume"><i
+                            class="fa fa-check-circle" aria-hidden="true"></i>
+                        see my resume</a>
+                </div>
+                </div>
+</header>
+
+
+<!-- Footer -->
+<footer class="bg-light py-5">
+    <div class="container">
+        <div class="small text-center text-muted">Copyright &copy; 2019 - ChiTarikDiesol</div>
     </div>
-</div>
-<div class="container">
-    <h2>UserInfo</h2>
-    <h4>First Name</h4>
-    <input type="text" id="firstName" class="form-control" required="">
-    <h4>Last name</h4>
-    <input type="text" id="lastName" class="form-control" required="">
-    <h4>About me</h4>
-    <input type="text" id="aboutMe" class="form-control" required="">
-    <h4>Location</h4>
-    <input type="text" id="location" class="form-control" required="">
-    <h4>constact info</h4>
-    <input type="text" id="contactInfo" class="form-control" required="">
-
-    <h2>Education</h2>
-    <h4>School Name</h4>
-    <input type="text" id="schoolName" class="form-control" required="">
-    <h4>School Location</h4>
-    <input type="text" id="schoolLocation" class="form-control" required="">
-    <h4>degree</h4>
-    <input type="text" id="degree" class="form-control" required="">
-    <h4>field of study</h4>
-    <input type="text" id="fieldOfStudy" class="form-control" required="">
-    <h4>graduation date</h4>
-    <input type="text" id="gradDate" class="form-control" required="">
-
-    <h2>Work Experience</h2>
-    <h4>Job Title</h4>
-    <input type="text" id="jobTitle" class="form-control" required="">
-    <h4>Company</h4>
-    <input type="text" id="company" class="form-control" required="">
-    <h4>Location</h4>
-    <input type="text" id="workLocation" class="form-control" required="">
-    <h4>Date of Employment</h4>
-    <input type="text" id="dateOfEmployment" class="form-control" required="">
-    <h4>Job Description</h4>
-    <input type="text" id="jobDescription" class="form-control" required="">
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle"
-            aria-hidden="true"></i>
-        Submit</button>
+</footer>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        $.urlParam = function (name) {
-            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            return results[1] || 0;
-        }
+    $.urlParam = function (name) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results[1] || 0;
+    }
 
-        // Capture the form inputs
-        $("#submit").on("click", function (event) {
-            event.preventDefault();
+    // Capture the form inputs
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
 
-            var id = $.urlParam('version_id');
+        var id = $.urlParam('version_id');
 
-            // Form validation
-            function validateForm() {
-                let isValid = true;
-                $(".form-control").each(function () {
-                    if ($(this).val() === "") {
-                        isValid = false;
-                    }
-                });
-                return isValid;
-            }
-            // If all required fields are filled
-            if (validateForm()) {
-                // Create an object for the user"s data
-                var userInfo = {
-                    firstName: $("#firstName").val(),
-                    lastName: $("#lastName").val(),
-                    aboutMe: $("#aboutMe").val(),
-                    location: $("#location").val(),
-                    contactInfo: $("#contactInfo").val(),
-                    VersionId: id
-                };
-
-                var Education = {
-                    schoolName: $("#schoolName").val(),
-                    schoolLocation: $("#schoolLocation").val(),
-                    degree: $("#degree").val(),
-                    fieldOfStudy: $("#fieldOfStudy").val(),
-                    gradDate: $("#gradDate").val(),
-                    VersionId: id
-                };
-
-                var workExp = {
-                    jobTitle: $("#jobTitle").val(),
-                    company: $("#company").val(),
-                    location: $("#workLocation").val(),
-                    dateOfEmployment: $("#dateOfEmployment").val(),
-                    jobDescription: $("#jobDescription").val(),
-                    VersionId: id
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+            $(".form-control").each(function () {
+                if ($(this).val() === "") {
+                    isValid = false;
                 }
+            });
+            return isValid;
+        }
+        // If all required fields are filled
+        if (validateForm()) {
+            // Create an object for the user"s data
+            var userInfo = {
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                aboutMe: $("#aboutMe").val(),
+                location: $("#location").val(),
+                contactInfo: $("#contactInfo").val(),
+                VersionId: id
+            };
 
-                // AJAX post the data 
-                $.post("/api/userinfo", userInfo, function (data) {
-                });
-                $.post("/api/education", Education, function (data) {
-                });
-                $.post("/api/workexp", workExp, function (data) {
-                });
-            } else {
-                alert("Please fill out all fields before submitting!");
+            var Education = {
+                schoolName: $("#schoolName").val(),
+                schoolLocation: $("#schoolLocation").val(),
+                degree: $("#degree").val(),
+                fieldOfStudy: $("#fieldOfStudy").val(),
+                gradDate: $("#gradDate").val(),
+                VersionId: id
+            };
+
+            var workExp = {
+                jobTitle: $("#jobTitle").val(),
+                company: $("#company").val(),
+                location: $("#workLocation").val(),
+                dateOfEmployment: $("#dateOfEmployment").val(),
+                jobDescription: $("#jobDescription").val(),
+                VersionId: id
             }
-        });
-    </script>
+
+            // AJAX post the data 
+            $.post("/api/userinfo", userInfo, function (data) {
+            });
+            $.post("/api/education", Education, function (data) {
+            });
+            $.post("/api/workexp", workExp, function (data) {
+            });
+
+
+        } else {
+            alert("Please fill out all fields before submitting!");
+        }
+    });
+</script>
