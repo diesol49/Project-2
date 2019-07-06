@@ -173,12 +173,8 @@
 
         <div class="row pt-5 mt-5">
             <div class="col-md-6 text-elements">
-                <h2 class="align-left mbr-fonts-style display-2">About Me</h2>
-                <p class="section-content-text align-left mbr-fonts-style display-7">Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Nam erat libero, bibendum in libero tempor, luctus volutpat ligula.
-                    Integer fringilla porttitor pretium. Nam erat felis, iaculis id justo ut, ullamcorper feugiat
-                    elit.
-                    Proin vel lectus auctor, porttitor ligula vitae, convallis leo. In eget massa elit</p>
+                <h2 class="align-left mbr-fonts-style">About Me</h2>
+                <p class="section-content-text align-left mbr-fonts-style display-7" id="mainAboutme"></p>
             </div>
             <div class="progress_elements col-md-6">
                 <div class="progress1 pb-5">
@@ -248,23 +244,17 @@
                         <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4 class="timeline-title">Job title</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> company</small>
+                                <h4 class="timeline-title" id="mainJobTitle"></h4>
+                                <p id="mainCompany"><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+                                        company</small>
                                 </p>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> location</small>
+                                <p id="mainJobLocation"><small class="text-muted"><i
+                                            class="glyphicon glyphicon-time"></i> location</small>
                                 </p>
                             </div>
                             <div class="timeline-body">
                                 <p>Job Description</p>
-                                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá ,
-                                    depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz
-                                    elementum
-                                    girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-                                    Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
-                                    significa
-                                    nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais
-                                    bolis eu
-                                    num gostis.</p>
+                                <p id="mainDescription"></p>
                             </div>
                         </div>
                     </li>
@@ -316,18 +306,14 @@
                         </h3>
                     </div>
                     <div class="step-text-content">
-                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Uc Davis</h4>
-                        <p class="mbr-step-text mbr-fonts-style display-7">
-                            school location
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5" id="mainSchoolName"></h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7" id="mainSchoolLocation">
                         </p>
-                        <p class="mbr-step-text mbr-fonts-style display-7">
-                            degree
+                        <p class="mbr-step-text mbr-fonts-style display-7" id="mainDegree">
                         </p>
-                        <p class="mbr-step-text mbr-fonts-style display-7">
-                            field of study
+                        <p class="mbr-step-text mbr-fonts-style display-7" id="mainFOS">
                         </p>
-                        <p class="mbr-step-text mbr-fonts-style display-7">
-                            graduation date
+                        <p class="mbr-step-text mbr-fonts-style display-7" id="mainGradDate">
                         </p>
                     </div>
                 </div>
@@ -403,9 +389,7 @@
                                 <h5 class="align-left mbr-fonts-style display-5">
                                     Address:
                                 </h5>
-                                <p class="mbr-text align-left mbr-fonts-style display-7">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis fuga labore
-                                    modi natus quos veritatis?
+                                <p class="section-content-text align-left mbr-fonts-style display-7" id="mainLocation">
                                 </p>
                             </div>
                         </div>
@@ -470,19 +454,81 @@
         var id = $.urlParam('version_id');
 
 
-        getVersion();
+        getUserInfo();
+        getWorkExp();
+        getEducation();
 
-        function inputInformation(data) {
+        function insertUserInfo(data) {
             var info = $("<h1>");
-            info.attr("id", "nameResume");
             info.text(data.firstName + " " + data.lastName);
             $("#mainTitle").append(info);
+
+            var aboutMe = $("<p>");
+            aboutMe.text(data.aboutMe);
+            $("#mainAboutme").append(aboutMe);
+
+            var location = $("<p>");
+            location.text(data.location);
+            $("#mainLocation").append(location);
         };
 
-        function getVersion() {
+        function getUserInfo() {
             $.get("/api/userinfo", function (data) {
                 console.log("!!!!!" + JSON.stringify(data[id]));
-                inputInformation(data[id])
+                insertUserInfo(data[id])
+            });
+        }
+
+        function insertWorkExp(data) {
+            var jobTitle = $("<p>");
+            jobTitle.text(data.jobTitle);
+            $("#mainJobTitle").append(jobTitle);
+
+            var company = $("<p>");
+            company.text(data.company);
+            $("#mainCompany").append(company);
+
+            var location = $("<p>");
+            location.text(data.location);
+            $("#mainJobLocation").append(location);
+
+            var description = $("<p>");
+            description.text(data.jobDescription);
+            $("#mainDescription").append(description);
+        }
+
+        function getWorkExp() {
+            $.get("/api/workexp", function (data) {
+                console.log("!!!!!" + JSON.stringify(data[id]));
+                insertWorkExp(data[id])
+            });
+        }
+
+        function insertEducation(data) {
+            var schoolName = $("<p>");
+            schoolName.text(data.schoolName);
+            $("#mainSchoolName").append(schoolName);
+
+            var schoolLocation = $("<p>");
+            schoolLocation.text(data.schoolLocation);
+            $("#mainSchoolLocation").append(schoolLocation);
+
+            var degree = $("<p>");
+            degree.text(data.degree);
+            $("#mainDegree").append(degree);
+
+            var fieldOfStudy = $("<p>");
+            fieldOfStudy.text(data.fieldOfStudy);
+            $("#mainFOS").append(fieldOfStudy);
+
+            var gradDate = $("<p>");
+            gradDate.text(data.gradDate);
+            $("#mainGradDate").append(gradDate);            
+        }
+        function getEducation() {
+            $.get("/api/education", function (data) {
+                console.log("!!!!!" + JSON.stringify(data[id]));
+                insertEducation(data[id])
             });
         }
     })
